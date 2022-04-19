@@ -99,7 +99,6 @@ ggplot(data = hotel_bookings) +
   labs(title="City hotel vs Resort hotel")
 
 #Using $ to access arrival_date_year column from dataset
-min(hotel_bookings$arrival_date_year)
 mindate <- min(hotel_bookings$arrival_date_year)
 maxdate <- max(hotel_bookings$arrival_date_year)
 
