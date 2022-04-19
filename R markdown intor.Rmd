@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "Karl"
+output: html_document
+date: '2022-04-05'
+---
+```{r ggplot for penguin data}
+
+library(ggplot2)
+
+library(palmerpenguins)
+
+data(penguins)
+
+View(penguins)
+
+```
+
+## Plotting out the code
+
+```{r ggplot for penguin data visualization}
+
+ggplot(data = penguins) +
+
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g))
+
+```
