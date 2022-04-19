@@ -17,12 +17,12 @@ arrange(hotel_bookings,desc(lead_time))
 ldtm_tbl <- arrange(hotel_bookings,desc(lead_time))
 view(ldtm_tbl) #highest lead time is 737
 
-#sorting data without using arrange
+#sorting data without using arrange, use $ to access 1 column in dataset
 max(hotel_bookings$lead_time)
 min(hotel_bookings$lead_time)
 mean(hotel_bookings$lead_time)
 median(hotel_bookings$lead_time)
-min(lead_time)
+
 
 
 hotel_summary <- 
@@ -32,42 +32,7 @@ hotel_summary <-
             min_lead_time=min(lead_time),
             max_lead_time=max(lead_time))
 
-
-
-#               Palmer penguins
-install.packages("palmerpenguins")
-library(palmerpenguins)
-install.packages("tidyverse")
-library(tidyverse)
-data("penguins")
-view(penguins)
-
-ggplot(data = penguins)+geom_point(mapping = aes(x=bill_length_mm, y=bill_depth_mm, color = island, size=body_mass_g))
-
-zlboston <- read.csv("zillow-boston.csv")
-glimpse(zlboston)
-ggplot(data="zillow-boston.csv") + geom_point(mapping=aes(x=postcode, y=price, color=bedroom_number))
-
-hotel_bookings<- read.csv("hotel_bookings.csv")
-glimpse(hotel_bookings)
-ggplot(data = hotel_bookings) +
-  geom_point(mapping = aes(x = stays_in_weekend_nights, y = children))
-
-ggplot(data = penguins)+
-  geom_smooth(mapping = aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_point(mapping = aes(x=flipper_length_mm, y=body_mass_g))
-
-ggplot(data = penguins)+
-  geom_smooth(mapping = aes(x=flipper_length_mm, y=body_mass_g, linetype=species))
-
-ggplot(data = penguins)+
-  geom_smooth(mapping = aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_jitter(mapping = aes(x=flipper_length_mm, y=body_mass_g))
-  
-ggplot(data = diamonds)+
-  geom_bar(mapping = aes(x=cut, fill = clarity))
-  
-
+#Practicing different ways to visualize data
 ggplot(data = hotel_bookings) +
   geom_bar(mapping = aes(x = distribution_channel))
 
@@ -98,10 +63,10 @@ ggplot(data = hotel_bookings) +
   facet_wrap(~deposit_type~market_segment) +
   theme(axis.text.x = element_text(angle = 45))
 
-data %>%
-  filter(variable1 == "DS") %>%  
-  ggplot(aes(x = weight, y = variable2, colour = variable1)) +  
-  geom_point(alpha = 0.3,  position = position_jitter()) + stat_smooth(method = "lm")
+#data %>%
+#  filter(variable1 == "DS") %>%  
+#  ggplot(aes(x = weight, y = variable2, colour = variable1)) +  
+#  geom_point(alpha = 0.3,  position = position_jitter()) + stat_smooth(method = "lm")
 
 ggplot(data = hotel_bookings) +
   geom_point(mapping = aes(x = lead_time, y = children))
@@ -133,10 +98,12 @@ ggplot(data = hotel_bookings) +
   theme(axis.text.x = element_text(angle = 45))+
   labs(title="City hotel vs Resort hotel")
 
+#Using $ to access arrival_date_year column from dataset
 min(hotel_bookings$arrival_date_year)
 mindate <- min(hotel_bookings$arrival_date_year)
 maxdate <- max(hotel_bookings$arrival_date_year)
 
+#Plotting out data with labels
 ggplot(data = hotel_bookings) +
   geom_bar(mapping = aes(x = market_segment)) +
   facet_wrap(~hotel) +
@@ -144,6 +111,7 @@ ggplot(data = hotel_bookings) +
   labs(title="Comparison of market segments by hotel type for hotel bookings",
        subtitle=paste0("Data from: ", mindate, " to ", maxdate))
 
+#Plotting data with specific X and Y labels
 ggplot(data = hotel_bookings) +
   geom_bar(mapping = aes(x = market_segment)) +
   facet_wrap(~hotel) +
